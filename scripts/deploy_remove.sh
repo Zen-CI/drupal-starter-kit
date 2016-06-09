@@ -3,7 +3,7 @@
 echo "Clean QA settings when removed"
 
 #remove database
-mysqladmin -uroot drop $DATABASE_NAME
+mysqladmin -uroot -f drop $DATABASE_NAME
 mysql -u root mysql -e "DROP USER '"$DATABASE_USER"'@'localhost';"
 
 #remove apache config

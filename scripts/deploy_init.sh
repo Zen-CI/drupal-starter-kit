@@ -3,7 +3,7 @@
 #prepare database access
 mysqladmin -uroot create $DATABASE_NAME
 mysql -u root mysql -e "CREATE USER '"$DATABASE_USER"'@'localhost';"
-mysql -u root mysql -e "GRANT ALL ON '"$DATABASE_NAME"'.* TO '"$DATABASE_USER"'@'localhost' IDENTIFIED BY '"$DATABASE_PASS"';"
+mysql -u root mysql -e "GRANT ALL ON $DATABASE_NAME.* TO '"$DATABASE_USER"'@'localhost' IDENTIFIED BY '"$DATABASE_PASS"';"
 
 #prepare DOCROOT
 mkdir $DOCROOT
