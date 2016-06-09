@@ -1,3 +1,3 @@
 #!/bin/sh
 
-drusn en -y faq
+drush en -y faq
