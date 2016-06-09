@@ -1,21 +1,43 @@
 deploy:
   branch:
-    server: REPLACE_WITH_SERVER
-    username: REPLACE_WITH_USER
-    dir: '{home}/github/{repo_owner}/{repo_name}/{branch}'
+    server: qa.drupal-site.net
+    username: test
+    dir: '{home}/github/{repo_owner}/{repo_name}/branch/{branch}'
     env_vars:
-      docroot: 'REPLACE_WITH_DOCROOT'
-      domain: 'REPLACE_WITH_DOMAIN'
-      database_name: REPLACE_WITH_DATABASE_NAAME
-      database_user: REPLACE_WITH_DTABASE_USER
-      database_pass: REPLACE_WITH_DATABASE_PASSWORD
-      account_user: REPLACE_WITH_ADMIN_USER
-      account_mail: REPLACE_WITH_ADMIN_EMAIL
+      docroot: '{home}/domains/{branch}.qa.drupal-site.net'
+      domain: '{branch}.qa.drupal-site.net'
+      database_name: 'test_{branch}'
+      database_user: 'test_{branch}'
+      database_pass: 'test_{branch}'
+      account_user: admin
+      account_mail: admin@zen.ci
       account_pass: REPLACE_WITH_ADMIN_PASSWORD
-      site_mail: REPLACE_WITH_SITE_EMAIL
-      site_name: REPLACE_WITH_SITE_NAME
-      default_theme: "REPLACE_WITH_THEME"
-      enable_devel: "LEAVE_EMPTY_OR_PUT_YES_TO_ENABLE"      
+      site_mail: noreply@zen.ci
+      site_name: '{branch} QA site for {repo_owner}/{repo_name}'
+      default_theme: "bootstrap_lite"
+      enable_devel: "yes"
     scripts:
       init: '{deploy_dir}/scripts/deploy_init.sh'
       after: '{deploy_dir}/scripts/deploy_update.sh'
+      remove: '{deploy_dir}/scripts/deploy_remove.sh'
+  pull_request:
+    server: qa.drupal-site.net
+    username: test
+    dir: '{home}/github/{repo_owner}/{repo_name}/pr/{pr}'
+    env_vars:
+      docroot: '{home}/domains/{branch}.qa.drupal-site.net'
+      domain: '{pr_number}.{branch}.qa.drupal-site.net'
+      database_name: 'test_{pr_number}'
+      database_user: 'test_{pr_number}'
+      database_pass: 'test_{pr_number}'
+      account_user: admin
+      account_mail: admin@zen.ci
+      account_pass: REPLACE_WITH_ADMIN_PASSWORD
+      site_mail: noreply@zen.ci
+      site_name: '{pr_number} {branch} QA site for {repo_owner}/{repo_name}'
+      default_theme: "bootstrap_lite"
+      enable_devel: "yes"
+    scripts:
+      init: '{deploy_dir}/scripts/deploy_init.sh'
+      after: '{deploy_dir}/scripts/deploy_update.sh'
+      remove: '{deploy_dir}/scripts/deploy_remove.sh'
