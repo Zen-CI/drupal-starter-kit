@@ -32,7 +32,7 @@ github:
     drupal-starter-kit:	# your repository get cloned here
       modules: 			# your own modules
       themes: 			# your own themes
-      libraries:			# your own libraries
+      libraries:		# your own libraries
 ```
 
 Your **DOCROOT** will have full drupal code structure with next extra:
